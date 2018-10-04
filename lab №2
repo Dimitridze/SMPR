@@ -1,23 +1,23 @@
 
-eucl <- function(u, v)
+euc <- function(u, v)
 {
 sqrt(sum((u - v)^2))
 }
 
 
 sortObjectsByDist <- function(xl, z, metricFunction =
-eucl)
+euc)
 {
 l <- dim(xl)[1]
 n <- dim(xl)[2] - 1
 
-distances <- matrix(NA, l, 2)
+distances <- rep(0,1)
 for (i in 1:l)
 {
-distances[i, ] <- c(i, metricFunction(xl[i, 1:n], z))
+distances[i] <- c(metricFunction(xl[i, 1:n], z))
 }
 
-orderedXl <- xl[order(distances[, 2]), ]
+orderedXl <- xl[order(distances), ]
 return (orderedXl);
 }
 
@@ -25,23 +25,50 @@ kNN <- function(xl, z, k)
 {
 
 orderedXl <- sortObjectsByDist(xl, z)
-n <- dim(orderedXl)[2] - 1
+n <- dim(orderedXl)[2] 
 
-classes <- orderedXl[1:k, n + 1]
+classes <- orderedXl[1:k, n ]
 
 ##Составляем таблицу встречаемости каждого класса
 counts <- table(classes)
 class <- names(which.max(counts))
-}
 return (class)
+}
+
+LOO <- function(k,xl)
+{
+sum =0
+for(i in 1:dim(xl)[1]{
+tmpXL <- rbind(xl[1:i-1, ],
+xl[i+1:dim(xl)[1],])
+xi <- c(xl[i,1], xl[i,2])
+class <-kNN(tmpXL,xi,k)
+if(class != xl[i,3])
+sum=sum+1
+}
+sum=sum/dim(xl)[1]
+return(sum)
+}
+xl<- iris[,3:5]
 
 colors <- c("setosa" = "red", "versicolor" = "green3",
 "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col
-= colors[iris$Species], asp = 1)
+= colors[iris$Species], main="Классификация ирисов Фишера kNN", xlab="длина", ylab = "Ширина",asp = 1)
+minErr = 99999
+k=1
+for(i in 1:10){
+# выбор К
+curErr <- Loo(i,xl)
+if(currErr <minErr){
+k=i
+}
+}
+for(i in seq(0,7,0.1)){
+for(j in seq(0,2.5,0.1)){
+z <- c(i,j)
+class <- kNN(xl,z,k)
 
-## объект
-z <- c(2.5, 1)
-xl <- iris[, 3:5]
-class <- kNN(xl, z, k=6)
 points(z[1], z[2], pch = 23, bg = colors[class], asp = 1)
+}
+}
