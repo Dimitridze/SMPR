@@ -3,7 +3,7 @@ Language R
 
 
   <p><a href="#Metricheskiye_algoritmy">1. Метрические алгоритмы классификации</a></p>
-  2.1. Метод 1NN(#1NN)
+ - [1NN](#1NN)
   <p><a href="#akNN">2.2. Метод kNN + Loo</a></p>
   <p><a href="#aLOO">2.3. Метод kwNN + Loo</a></p>
   <p><a href="#akNN">2.4.  kwNN</a></p>
