@@ -81,7 +81,6 @@ map = function(k){
     }
   }
 }
-
 par(mfrow = c(1, 2))
 colors <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
 xl <- iris[, 3:5] 
