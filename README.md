@@ -105,7 +105,7 @@ weightsKWNN = function(i, k)
 }
 ```
 
-	<center>
+<center>
 <table>
   <tbody>
     <tr>
