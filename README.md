@@ -5,7 +5,7 @@ Language R
   <p><a href="#Metricheskiye_algoritmy">1. Метрические алгоритмы классификации</a></p>
   <p><a href="#1NN">2.1 Метод 1NN</a></p>
   <p><a href="#kNN">2.2. Метод kNN + Loo</a></p>
-  <p><a href="#kwNN>2.3. Метод kwNN + Loo</a></p>
+  <p><a href="#kwNN">2.3. Метод kwNN + Loo</a></p>
  
   
 ## 1. Метрические алгоритмы классификации <a name="Metricheskiye_algoritmy"></a>
