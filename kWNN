@@ -1,0 +1,75 @@
+#Функция отрисовки набора
+plotIris <- function(ir=iris,label="Классификация"){
+  plot(ir[, 3:4], pch = 21, bg = colors[ir$Species], col = colors[ir$Species],
+       xlab="Длина лепестка",ylab="Ширина лепестка",main=label,asp = 1)
+}
+
+#Функция метрики
+eDist <- function(u, v) {
+  sqrt(sum((u - v)^2))
+}
+
+
+#Функция определения класса при помощи алгоритма KWNN
+KWNN <- function(x,z,k=6,w=0.5){
+  m <- dim(x)[1]
+  n <- dim(x)[2] - 1
+  dist <- matrix(NA, m, n)
+  for (i in m:1)  dist[i,] <- c(i, eDist(x[i,1:n], z))
+  ordered <- x[order(dist[,2])[1:k],]
+  classes <- names(table(ordered[,n+1]))
+  rang <- rep(0,length(classes))
+  for(i in 1:k) rang[ordered[i,3]] <- rang[ordered[i,n+1]] + w^i
+  class <- classes[which.max(rang)]
+  return(class)
+}
+
+#Функция отрисовки объекта, классифицированного при помощи алгоритма KWNN
+plotKWNN <- function(z1,z2,x=iris,k=6,w=0.5){
+  points(z1, z2, pch = 21, col = colors[KWNN(x[,3:5],c(z1,z2),k,w)])
+}
+
+
+#Функция отрисовки карты классификации алгоритма KWNN
+classMapKWNN <- function(ir=iris,k=6,w=0.5){
+  for (i in seq(0,7,0.1)) {
+    for (j in seq(0,2.5,0.1)){
+      plotKWNN(i,j,ir,k)
+    }
+  }
+}
+
+
+#Функция отрисовка графика оценки точности алгоритма KWNN при помощи скользящего контроля
+LOOKWNN <- function(x, k=6){
+  m <- dim(x)[1]
+  n <- dim(x)[2]-1
+  q <- seq(0.05,0.95,0.05)
+  len <- length(q)
+  mark <- rep(0,len)
+  for(i in 1:m){
+    x1 <- x[-i,]
+    x1_m <- dim(x1)[1]
+    dist <- matrix(NA, x1_m, n)
+    for (j in x1_m:1){
+      dist[j,] <- c(j, eDist(x1[j,1:n], x[i,1:n]))
+    }  
+    ordered <- x1[order(dist[,2])[1:k],]
+    classes <- names(table(ordered[,n+1]))
+    for(w in 1:len){
+      rang <- rep(0,length(classes))
+      for(j in 1:k) rang[ordered[j,n+1]] <- rang[ordered[j,n+1]] + w^q[j]
+      class <- classes[which.max(rang)]
+      if(class != x[i,n+1]) {
+        mark[w] <- mark[w] + 1/m
+      }
+    }
+  }
+  min_point <- c(q[which.min(mark)], round(min(mark),4))
+  text <- paste("k=",k," q=",min_point[1],"\nLOO=",min_point[2],sep="")
+  print(mark)
+  print(which.min(mark))
+  plot(q,mark,type = "l",main = "LOO(k,q) алгоритма KWNN",xlab = "q", ylab="оценка")
+  points(min_point[1], min_point[2], pch=19, col="black", bg="black")
+  text(min_point[1]+0.06,min_point[2]+0.0026,labels=text)
+}
