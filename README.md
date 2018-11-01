@@ -147,7 +147,7 @@ Loo <- function(k,xl)
     <tr>
       <td>KWNN</a></td>
       <td>k=9</td>
-      <td>0.0267</td>
+      <td>0.0266</td>
     </tr>
     <tr>
       <td>KNN</a></td>
