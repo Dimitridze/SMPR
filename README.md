@@ -6,6 +6,7 @@ Language R
   - [1NN](#1NN)
   - [KNN](#KNN)
   - [KWNN](#KWNN)
+  - [Парзеновское окно (PW)](#Парзеновское-окно-pw)
  
   
 ## Метрические алгоритмы классификации
@@ -226,16 +227,16 @@ l <- dim(xl)[1]
                                                         }
 ```
 
-<p><img src="img\E+T.png" ></p>
-<p><img src="img\K+G.png" ></p>
-<p><img src="img\R.png" ></p>
+<p><img src="img\ET.png" ></p>
+<p><img src="img\KG.png" ></p>
+<p><img src="img\G.png" ></p>
 
 
 __Графики Loo__
 
 <p><img src="img\ETloo.png" ></p>
 <p><img src="img\QGloo.png" ></p>
-<p><img src="img\Rloo.png" ></p>
+                                                  <p><img src="img\Rloo.png" ></p>
 
 __Наблюдения при реализации__:
     Если _h_ сделать слишком маленьким, классифицуруется заметно меньшее количество точек. Если  же _h_ сделать слишком большим, то т учитываютя точки, находящиеся на очень большом расстоянии.
