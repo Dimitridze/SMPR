@@ -49,7 +49,7 @@ Language R
     </tr>
       <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.1  ( Gauss K )</td>
+      <td>h=0.1  ( GAUSS K )</td>
       <td>0.4</td>
     </tr>
     	  </tbody>
