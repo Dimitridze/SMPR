@@ -15,7 +15,7 @@ Language R
     <tr>
       <th>Метод</th>
       <th>Параметры</th>
-      <th>Точность</th>
+      <th>Точность(Err)</th>
     </tr>
     <tr>
       <td>KWNN</a></td>
