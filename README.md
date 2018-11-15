@@ -15,7 +15,7 @@ Language R
     <tr>
       <th>Метод</th>
       <th>Параметры</th>
-      <th>Точность(Err)</th>
+      <th>Loo</th>
     </tr>
     <tr>
       <td>KWNN</a></td>
@@ -29,10 +29,30 @@ Language R
     </tr>
     <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.4  (0.1 Gauss)</td>
+      <td>h=0.4  ( RECTANGLE K )</td>
       <td>0.4</td>
     </tr>
-	  </tbody>
+    <tr>
+      <td>Парзеновские окна</a></td>
+      <td>h=0.4  ( TRIANGLE K )</td>
+      <td>0.4</td>
+    </tr>
+    <tr>
+      <td>Парзеновские окна</a></td>
+      <td>h=0.4  ( EPANECHNIKOVA K )</td>
+      <td>0.4</td>
+    </tr>
+    <tr>
+      <td>Парзеновские окна</a></td>
+      <td>h=0.4  ( QUARTIC K )</td>
+      <td>0.4</td>
+    </tr>
+      <tr>
+      <td>Парзеновские окна</a></td>
+      <td>h=0.1  ( Gauss K )</td>
+      <td>0.4</td>
+    </tr>
+    	  </tbody>
    </table>
  
  
