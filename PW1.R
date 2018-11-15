@@ -33,19 +33,19 @@ PW = function(XL,y,h,metricFunction = euclideanDistance)
   }
   else{
     return (names(which.max(weights)))
-     }
+      }
 }
 
 plotWindows = function(h)
 {
   for(i in seq(0, 7, 0.1))
-{
+  {
     for(j in seq(0,3,0.1))
-{
+    {
       z = c(i, j)
       class = PW(xl,z,h)
       if(class!="0")
-{
+      {
         points(z[1], z[2], pch = 1,col=colors[class])
       }
     }
@@ -69,7 +69,7 @@ plotWindows = function(h)
      }    
     } 
   }
-  
+  #aver
   loo = loo / n
   x = seq(0.1,2,0.1)
   plot(x, loo,main ="LOO for PW(H)", xlab="h", ylab="LOO", type = "l")
@@ -87,7 +87,6 @@ plotWindows = function(h)
   plot(iris[, 3:4],main=text, pch = 21, bg = colors[xl$Species], col = colors[xl$Species],asp='1')
   plotWindows(minX)
 }
-
 
 
 par(mfrow = c(1, 2))
