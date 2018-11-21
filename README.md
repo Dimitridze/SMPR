@@ -29,27 +29,27 @@ Language R
     </tr>
     <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.4  ( RECTANGLE K )</td>
+      <td>h=0.4  ( Прямоугольное ядро )</td>
       <td>0.4</td>
     </tr>
     <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.4  ( TRIANGLE K )</td>
+      <td>h=0.4  ( Треугольное ядро )</td>
       <td>0.4</td>
     </tr>
     <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.4  ( EPANECHNIKOVA K )</td>
+      <td>h=0.4  ( ядро Епанечникова )</td>
       <td>0.4</td>
     </tr>
     <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.4  ( QUARTIC K )</td>
+      <td>h=0.4  ( Квартическое ядро )</td>
       <td>0.4</td>
     </tr>
       <tr>
       <td>Парзеновские окна</a></td>
-      <td>h=0.1  ( GAUSS K )</td>
+      <td>h=0.1  ( __Гауссовское ядро__ )</td>
       <td>0.4</td>
     </tr>
     	  </tbody>
