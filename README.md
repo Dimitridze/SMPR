@@ -362,7 +362,7 @@ __Алгоритм метода PF__
       return(class)
          }
 	 
-__Алгоритм подбора ![gamma_i](http://latex.codecogs.com/gif.latex?%5Cgamma_%7Bi%7D):__
+__Алгоритм подбора__ ![gamma_i](http://latex.codecogs.com/gif.latex?%5Cgamma_%7Bi%7D):
     - Множество потенциалов ![gamma_i](http://latex.codecogs.com/gif.latex?%5Cgamma_%7Bi%7D) зануляется. Задается максимально допустимое число ошибок(eps).
     - Из обучающей выборки выбирается очередной объект ![x_i](http://latex.codecogs.com/gif.latex?x_%7Bi%7D).
     - Затем Для ![x_i](http://latex.codecogs.com/gif.latex?x_%7Bi%7D) запускается алгоритм классификации.
