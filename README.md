@@ -324,6 +324,73 @@ __Метод потенциальных функций__ - метрически�
 
 <p><img src="img\formula.png" ></p>
 
+ Программная реализация метода потенциальных функций:
+ 
+      PF = function(potentials,XL,y,h,metricFunction = euclideanDistance)
+    {
+     l <- nrow(XL)
+     n <- ncol(XL)
+
+     weights = rep(0,3)
+    names(weights) = unique(XL[,3])
+     for(i in 1:l)
+    {
+    
+    x=XL[i,1:2]
+    class=XL[i,3]
+    
+    r = metricFunction(x,y)/h
+    weights[class] = weights[class] + potentials[i]*kernelR(r);
+    }
+    class = names(which.max(weights))
+       #no p in w
+    if (max(weights) == 0) return("0") 
+      return(class)
+         }
+	 
+Программная реализация алгоритма подбора ![gamma_i](http://latex.codecogs.com/gif.latex?%5Cgamma_%7Bi%7D):
+
+     getPotentials <- function(XL,eps,h,class) 
+    {
+     # get pots all elements
+    l <- nrow(XL)
+     n <- ncol(XL)
+
+    potentials <- rep(0,l)
+    err <- eps + 1
+ 
+    while (err > eps) 
+    {
+     while (TRUE) 
+     {
+      # Пока не получим несоответствие классов, чтобы обновить потенциалы
+      rand <- sample(1:l, 1)
+     x=XL[rand,1:2]
+        u <- PF(potentials,XL,x,h)
+
+      if(colors[u] != colors[class[rand]]) {
+        potentials[rand] = potentials[rand] + 1
+        break
+        }
+     }
+    # Подсчет числа ошибок
+    err <- 0
+    for (i in 1:l)
+    {
+      x = XL[i,1:2]
+        points=XL[-i,1:3]
+         if(colors[PF(potentials,points,x,h)]!= colors[class[i]])
+     {
+          err = err + 1
+    }
+    }
+    }
+     return (potentials)
+    }
+В данной программе использовал прямоугольное ядро. алгоритм подбирает только силу потенциала , радиус потенциалов h я задал заранее фиксированным.
+
+Программная реализация подбора потенциалов пока точность алгоритма, не будет меньше заданной ошибки myError
+<p><img src="img\PFF.png" ></p>
 
 __Преимущества метода потенциальных функций:__
 
