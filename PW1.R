@@ -54,7 +54,7 @@ plotWindows = function(h)
 
   LOO = function(xl,class) {
   l = dim(xl)[1]
-  loo = rep(0, 20)
+  loo = rep(0, l)
   
   for(i in 1:(l)){
     u=xl[i, 1:2]
