@@ -101,6 +101,15 @@ PFpic = function(XL, classes, potentials, h, colors) {
   }
 }
 
+#SvoiH <- function(xl){
+  #   l <- nrow(xl)
+ #    h <- rep(0, l)
+ #    for(i in 1:l)           {
+  #   if (xl[i, ncol(xl)] == "setosa") h[i] <- 1
+   #  else h[i] <- 0.4        }
+  #   return (h)      }
+   #   h <- SvoiH(xl)
+
 help(plot)
 
 
