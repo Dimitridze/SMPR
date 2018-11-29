@@ -22,10 +22,10 @@ getPotentials <- function(XL,eps,h,class)
   err <- eps + 1
  
    while (err > eps) 
-  {
+  {#Подбираем потенциалы
     while (TRUE) 
-     {
-      # Ïîêà íå ïîëó÷èì íåñîîòâåòñòâèå êëàññîâ, ÷òîáû îáíîâèòü ïîòåíöèàëû
+     {#Пока потенциалы не обновятся
+      
       rand <- sample(1:l, 1)
 x=XL[rand,1:2]
       u <- PF(potentials,XL,x,h)
@@ -35,10 +35,10 @@ x=XL[rand,1:2]
         break
         }
      }
-    # Ïîäñ÷åò ÷èñëà îøèáîê
+    
     err <- 0
     for (i in 1:l)
-    {
+    {#Считаем ошибку
 x = XL[i,1:2]
         points=XL[-i,1:3]
          if(colors[PF(potentials,points,x,h)]!= colors[class[i]])
@@ -78,7 +78,7 @@ class = names(which.max(weights))
 
 
 PFpic = function(XL, classes, potentials, h, colors) {
-  entialsplot(XL, bg = colors[classes], pch = 21, asp = 1,  main = "Pont-s") 
+  entialsplot(XL, bg = colors[classes], pch = 21, asp = 1,  main = "Poten-s") 
   t = potentials / max(potentials)
   for (i in 1:l) 
 {
