@@ -110,9 +110,9 @@ PFpic = function(XL, classes, potentials, h, colors) {
   #   return (h)      }
    #   h <- SvoiH(xl)
 
+
+
 help(plot)
-
-
 
 colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue", "0" = "NA")
 xl = iris[, 3:5] 
