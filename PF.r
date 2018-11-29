@@ -1,4 +1,4 @@
-#install.packages("plotrix")
+install.packages("plotrix")
 require("plotrix")
 euclideanDistance <- function(u, v)
 {
@@ -79,6 +79,7 @@ class = names(which.max(weights))
 
 PFpic = function(XL, classes, potentials, h, colors) {
   entialsplot(XL, bg = colors[classes], pch = 21, asp = 1,  main = "Poten-s") 
+	
   t = potentials / max(potentials)
   for (i in 1:l) 
 {
@@ -112,7 +113,7 @@ PFpic = function(XL, classes, potentials, h, colors) {
 
 
 
-help(plot)
+#help(plot)
 
 colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue", "0" = "NA")
 xl = iris[, 3:5] 
