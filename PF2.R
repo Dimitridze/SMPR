@@ -62,7 +62,6 @@ if (colors[PF(pots,points,x, h)]!= colors[class[i]]){
 error = error + 1
 }
 }
-print(pots)
 print(error)
 }
 return(pots)
