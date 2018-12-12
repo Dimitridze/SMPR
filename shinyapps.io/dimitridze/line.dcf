@@ -1,0 +1,12 @@
+name: line
+title: line
+username:
+account: dimitridze
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 615620
+bundleId: 1759615
+url: https://dimitridze.shinyapps.io/line/
+when: 1544655826.15986
+asMultiple: FALSE
+asStatic: FALSE
