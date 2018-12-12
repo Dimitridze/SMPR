@@ -501,7 +501,7 @@ __Алгоритм:__
     </tr>
     <tr>
       <td><a href="#Изолинии">Линии уровня</a></td>
-      <td><a href="https://dimitridze.shinyapps.io/line/">Реализация</a></td>
+      <td><a href="https://dimitridze.shinyapps.io/line/">+</a></td>
     </tr>
       </tbody>
    </table>
