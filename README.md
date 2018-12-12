@@ -500,7 +500,7 @@ __Алгоритм:__
       <th>Shiny</th>
     </tr>
     <tr>
-      <td><a href="#Изолинии">Линии уровня</a></td>
+      <td><a href="#Изолинии">Изолинии(Линии уровня)</a></td>
       <td><a href="https://dimitridze.shinyapps.io/line/">+</a></td>
     </tr>
       </tbody>
