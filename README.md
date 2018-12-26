@@ -543,4 +543,4 @@ margin = function(points,classes,point,class){
 Собственно, <a href="https://dimitridze.shinyapps.io/line/">реализация</a>  задания.
 
 Визуализация:  
-<p><img src="img\line.png" ></p>
+<p><img src="img\IZO.png" ></p>
