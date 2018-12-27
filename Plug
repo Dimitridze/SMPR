@@ -49,7 +49,7 @@ xy2 <- mvrnorm(n=ObjectsCountOfEachClass, Mu2, Sigma2)
 ## Собираем два класса в одну выборку 
 xl <- rbind(cbind(xy1, 1), cbind(xy2, 2)) 
 ## Рисуем обучающую выборку  
-colors <- c(rgb(100/255, 10/255, 100/255), rgb(30/255, 30/255, 30/255)) 
+colors <- c(rgb(100/255, 10/255, 100/255), rgb(115/255, 50/255, 77/255)) 
 plot(xl[,1], xl[,2], pch = 21, bg = colors[xl[,3]], asp = 1, xlab = "Ось X", ylab = "Ось Y", main = "Подстановочный алгоритм(Plug-in)") 
 ## Оценивание 
 objectsOfFirstClass <- xl[xl[,3] == 1, 1:2] 
