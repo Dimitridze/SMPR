@@ -138,6 +138,12 @@ stolp = function(points, classes,errors) {
   }
 }
 
+start <- Sys.time()
+  for(idx in 1:150){
+    parsen(learn_data[, 1:3], my_iris[idx,1:2])
+  }
+  print(Sys.time() - start)
+}
 
 
 par(mfrow = c(1, 2))
