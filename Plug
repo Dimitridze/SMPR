@@ -1,4 +1,3 @@
-## Восстановление центра нормального распределения 
 estimateMu <- function(objects) {     
   ## mu = 1 / m  *  sum_{i=1}^m(objects_i)     
   rows <- dim(objects)[1]     
