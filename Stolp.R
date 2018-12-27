@@ -56,16 +56,7 @@ margin = function(points,classes,point,class){
 
 stolp = function(points, classes,errors) {
   
-  start <- Sys.time()
-      
-      for(i in seq(0, 7, 0.1)){
-       for(j in seq(0,3,0.1)){
-         z = c(i, j)
-         class = Parzen(points,z,1,TRUE)
-           #points(z[1], z[2], pch = 1,col=colors[class])
-        }
-      }
-      print(Sys.time() - start)
+
   
   
   n = length(classes)
@@ -120,6 +111,7 @@ stolp = function(points, classes,errors) {
     
    
     print(count)
+    
     if( count < errors )
     {
       plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1,
@@ -129,13 +121,24 @@ stolp = function(points, classes,errors) {
       plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1,
            main = "Карта Классификации STOLP", ylab = "y ", xlab = "x", col.lab = "red")
       
+        start <- Sys.time()
+      
+      for(i in seq(0, 7, 0.1)){
+       for(j in seq(0,3,0.1)){
+         z = c(i, j)
+         class = Parzen(points,z,1,TRUE)
+           points(z[1], z[2], pch = 1,col=colors[class])
+        }
+      }
+      print(Sys.time() - start)
+      #эталонное
       start <- Sys.time()
       
       for(i in seq(0, 7, 0.1)){
         for(j in seq(0,3,0.1)){
           z = c(i, j)
           class = Parzen(etalone,z,1,TRUE)
-           #points(z[1], z[2], pch = 1,col=colors[class])
+           points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
       print(Sys.time() - start)
