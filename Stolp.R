@@ -59,10 +59,10 @@ stolp = function(points, classes,errors) {
   start <- Sys.time()
       
       for(i in seq(0, 7, 0.1)){
-        for(j in seq(0,3,0.1)){
-          z = c(i, j)
-          class = Parzen(points,z,1,TRUE)
-           points(z[1], z[2], pch = 1,col=colors[class])
+       for(j in seq(0,3,0.1)){
+         z = c(i, j)
+         class = Parzen(points,z,1,TRUE)
+           #points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
       print(Sys.time() - start)
@@ -135,7 +135,7 @@ stolp = function(points, classes,errors) {
         for(j in seq(0,3,0.1)){
           z = c(i, j)
           class = Parzen(etalone,z,1,TRUE)
-           points(z[1], z[2], pch = 1,col=colors[class])
+           #points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
       print(Sys.time() - start)
