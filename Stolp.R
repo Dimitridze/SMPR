@@ -114,6 +114,8 @@ stolp = function(points, classes,errors) {
       plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1,
            main = "Карта Классификации STOLP", ylab = "y ", xlab = "x", col.lab = "red")
       
+      start <- Sys.time()
+      
       for(i in seq(0, 7, 0.1)){
         for(j in seq(0,3,0.1)){
           z = c(i, j)
@@ -121,6 +123,7 @@ stolp = function(points, classes,errors) {
            points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
+      print(Sys.time() - start)
       points(pointsWE[,1:2],col = colors[classes], bg = colors[classes], pch = 21)
     
      break;
@@ -138,12 +141,8 @@ stolp = function(points, classes,errors) {
   }
 }
 
-start <- Sys.time()
-  for(idx in 1:150){
-    parsen(learn_data[, 1:3], my_iris[idx,1:2])
-  }
-  print(Sys.time() - start)
-}
+
+
 
 
 par(mfrow = c(1, 2))
