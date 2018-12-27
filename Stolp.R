@@ -52,7 +52,22 @@ margin = function(points,classes,point,class){
 }
 
 
+
+
 stolp = function(points, classes,errors) {
+  
+  start <- Sys.time()
+      
+      for(i in seq(0, 7, 0.1)){
+        for(j in seq(0,3,0.1)){
+          z = c(i, j)
+          class = Parzen(points,z,1,TRUE)
+           points(z[1], z[2], pch = 1,col=colors[class])
+        }
+      }
+      print(Sys.time() - start)
+  
+  
   n = length(classes)
   margins = rep(0, n)
   for (i in 1:n){
