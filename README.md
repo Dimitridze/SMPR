@@ -568,8 +568,10 @@ start <- Sys.time()
   Обычно он используется, как эталон при сравнении различных алгоритмов классификации.  
 Решающее правило принимает вид:  
 ![](http://latex.codecogs.com/gif.latex?a%28x%29%3Darg%20%5Cmax_%7By%5Cin%20Y%7D%28%5Cln%28%5Clambda_%7By%7DP_y%29&plus;%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Cln%28p_%7Byj%7D%28%5Cxi_j%29%29%29)  
+
 Непосредственно <a href="https://dimitridze.shinyapps.io/NAIVE/">реализация</a> задания.
-https://dimitridze.shinyapps.io/NAIVE/
+
+
 ## Изолинии
  Случайная величина x ∈ R имеет нормальное (гауссовское) распределение с параметрами µ и σ^2, если ее плотность задается выражением:  
 ![f](http://simfik.ru/i/f.png)  
