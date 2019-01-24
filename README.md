@@ -528,8 +528,30 @@ start <- Sys.time()
 
 Отступы для парзвеновского окна:
 
-<p><img src="img\margins.png" ></p>
+<p><img src="img\st.png" ></p>
 
+С разделением ошибочных объектов от выбросов.
+
+Код:
+```
+
+ badpoints = which(margins < 0)
+badmargins = rep(0,length(badpoints))
+for (i in 1:length(badpoints)){
+badmargins[i]=margins[badpoints[i]]
+}
+badmargins = rev(sort(badmargins))
+print(badmargins)
+  for (i in 2:length(badpoints)){
+vubros<-0
+if(abs(badmargins[i]-badmargins[i-1])>1)
+{
+vubros=i
+ print(badmargins[vubros])
+}
+  }
+  
+```
 ## Байесовские классификаторы
 
 <center>
