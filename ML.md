@@ -93,3 +93,48 @@ def a_h(self, x):
       <td align = center>17317</td>
    </tr>
  </table>
+ import numpy as np
+from sklearn import datasets
+import matplotlib.pyplot as plt
+from LinearRegression import LinearRegression
+
+# X = datasets.load_diabetes().data
+# Y = datasets.load_diabetes().target
+
+X = datasets.load_boston().data
+Y = datasets.load_boston().target
+typeOfGraphics = '2d'
+
+# Точки для проверки
+test = X
+
+regressions = ['LinearRegression', 'LinearRegressionWithSVD', 'RidgeRegression', 'RidgeRegressionWithSVD']
+
+# Когда признаков много, визуализировать не нужно
+if typeOfGraphics == 'none':
+    for r in regressions:
+        lr = LinearRegression(X, Y, r)
+        print("SSE: " + str(lr.SSE()))
+
+# График на плоскости по одному j-му признаку
+if typeOfGraphics == '2d':
+    j = 5
+    X = X[:, j:(j + 1)]
+    test = test[:, j:(j + 1)]
+    # Для сетки
+    test = np.arange(test.min(), test.max(), 0.01)
+    # Для вычисления alpha
+    testColumn = np.column_stack((np.ones(test.shape[0]), test))
+    for r in regressions:
+        plt.ioff()
+        plt.figure(r)
+        ax = plt.subplot()
+        ax.title.set_text('Linear regression on %i feature, sample Boston' % (j))
+        ax.plot(X, Y, 'r.', markersize=3, color='blue')
+        lr = LinearRegression(X, Y, r)
+        alpha = []
+        for t in testColumn:
+            alpha.append(lr.predict(t))
+        ax.plot(test, alpha, marker='o', markersize=1, linewidth=2, color='red')
+        print("SSE: " + str(lr.SSE()))
+    plt.show()
