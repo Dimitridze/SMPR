@@ -93,48 +93,61 @@ def a_h(self, x):
       <td align = center>17317</td>
    </tr>
  </table>
- import numpy as np
-from sklearn import datasets
-import matplotlib.pyplot as plt
-from LinearRegression import LinearRegression
+### LOWESS — локально взвешенное сглаживание
 
-# X = datasets.load_diabetes().data
-# Y = datasets.load_diabetes().target
+Оценка Надарая-Ватсона чувствительна к большим одиночным выбросам. Для нахождения выбросов вычисляется *величина ошибки* ![alt text](https://latex.codecogs.com/gif.latex?\varepsilon_i&space;=&space;|a_h(x_i;&space;X^l&space;\setminus&space;\left&space;\{&space;x_i&space;\right&space;\})-y_i|). Чем она больше, тем в большей степени прецедент ![alt text](https://latex.codecogs.com/gif.latex?(x_i,&space;y_i)) является выбросом. Следовательно, таким прецедентам нужно понизить вес.
 
-X = datasets.load_boston().data
-Y = datasets.load_boston().target
-typeOfGraphics = '2d'
+Отсюда возникла идея домножить веса ![alt text](https://latex.codecogs.com/gif.latex?w_i) на следующие коэффициенты:
 
-# Точки для проверки
-test = X
+![alt text](https://latex.codecogs.com/gif.latex?\gamma&space;_i&space;=&space;\widetilde{K}(\varepsilon&space;_i)&space;=&space;\widetilde{K}(|a_i&space;-&space;y_i|)),
 
-regressions = ['LinearRegression', 'LinearRegressionWithSVD', 'RidgeRegression', 'RidgeRegressionWithSVD']
+где ![alt text](https://latex.codecogs.com/gif.latex?\widetilde{K}) — ещё одно ядро, вообще говоря, отличное от ![alt text](https://latex.codecogs.com/gif.latex?K).
 
-# Когда признаков много, визуализировать не нужно
-if typeOfGraphics == 'none':
-    for r in regressions:
-        lr = LinearRegression(X, Y, r)
-        print("SSE: " + str(lr.SSE()))
+Ниже представлен алгоритм нахождения коэффициентов ![alt text](https://latex.codecogs.com/gif.latex?\gamma_i):
 
-# График на плоскости по одному j-му признаку
-if typeOfGraphics == '2d':
-    j = 5
-    X = X[:, j:(j + 1)]
-    test = test[:, j:(j + 1)]
-    # Для сетки
-    test = np.arange(test.min(), test.max(), 0.01)
-    # Для вычисления alpha
-    testColumn = np.column_stack((np.ones(test.shape[0]), test))
-    for r in regressions:
-        plt.ioff()
-        plt.figure(r)
-        ax = plt.subplot()
-        ax.title.set_text('Linear regression on %i feature, sample Boston' % (j))
-        ax.plot(X, Y, 'r.', markersize=3, color='blue')
-        lr = LinearRegression(X, Y, r)
-        alpha = []
-        for t in testColumn:
-            alpha.append(lr.predict(t))
-        ax.plot(test, alpha, marker='o', markersize=1, linewidth=2, color='red')
-        print("SSE: " + str(lr.SSE()))
-    plt.show()
+1. ![alt text](https://latex.codecogs.com/gif.latex?\gamma_i&space;=&space;1,&space;i&space;=&space;1,&space;...,&space;l;)
+2. **повторять пока** ![alt text](https://latex.codecogs.com/gif.latex?\gamma_i) не стабилизируются:
+- вычислить *LOO* на каждом объекте: 
+
+![alt text](https://latex.codecogs.com/gif.latex?a_i&space;=&space;a_h(x_i,&space;X^l\backslash\{x_i\})&space;=&space;\frac{\sum\limits_{j&space;=&space;1,&space;j&space;\neq&space;i}^{l}&space;y_j&space;\gamma_j&space;K(\frac{\rho(x_i,&space;x_j)}{h})}{\sum\limits_{j&space;=&space;1,&space;j&space;\neq&space;i}^{l}&space;\gamma_j&space;K(\frac{\rho&space;(x_i,&space;x_j)}{h})};)
+
+- вычислить коэффициенты ![alt text](https://latex.codecogs.com/gif.latex?\gamma_i):
+
+![alt text](https://latex.codecogs.com/gif.latex?\gamma&space;_i&space;=&space;\tilde{K}(|a_i&space;-&space;y_i|).)
+
+Будем считать, что коэффициенты *стабилизированы*, когда для соседних ![alt text](https://latex.codecogs.com/gif.latex?\gamma) разность *LOO* станет меньше некоторого заданного значения.
+
+Ядро ![alt text](https://latex.codecogs.com/gif.latex?\widetilde{K}(\varepsilon)) задаётся следующим образом:
+
+![alt text](https://latex.codecogs.com/gif.latex?\widetilde{K}(\varepsilon)&space;=&space;K_Q\left&space;(&space;\frac{\varepsilon}{6med\left&space;(&space;\varepsilon_i&space;\right&space;)}&space;\right&space;),)
+
+где ![alt text](https://latex.codecogs.com/gif.latex?K_Q) — квартическое ядро, ![alt text](https://latex.codecogs.com/gif.latex?med\left&space;(&space;\varepsilon_i&space;\right&space;)) — медиана вариационного ряда ошибок.
+
+В качестве ядра в реализации использовалось квартическое, определённое ниже:
+
+![alt text](https://latex.codecogs.com/gif.latex?K(x)&space;=&space;(1&space;-&space;x^2)^2[|x|&space;\leq&space;1])
+
+Сравнительная таблица качества алгоритмов для квартического ядра:
+
+<table>
+   <tr>
+      <td align = center><b>Алгоритм</b></td>
+      <td align = center><b>LOO_min</b></td>
+      <td align = center><b>h_opt</b></td>
+      <td align = center><b>SSE</b></td>
+   </tr>
+   
+   <tr>
+      <td align = center><b>Формула Надарая-Ватсона</b></td>
+      <td align = center>1003,964</td>
+      <td align = center>2,32</td>
+      <td align = center>989,161</td>
+   </tr>
+    <tr>
+      <td align = center><b>LOWESS</b></td>
+      <td align = center>969,613</td>
+      <td align = center>2,98</td>
+      <td align = center>730,761</td>
+   </tr>
+ </table>
+ 
